@@ -1,26 +1,22 @@
-import React, { useEffect, useState } from 'react'
+import { createBrowserRouter, RouterProvider } from 'react-router-dom';
+import RootLayout from './pages/Roots';
+import HomePage from './pages/Home';
+import Login from './pages/Login';
+
+const router = createBrowserRouter([
+  {
+    path: '/',
+    element: <RootLayout />,
+    children: [
+      {index: true, element: <HomePage />},
+      {path: "login", element: <Login />}
+    ]
+  }
+])
 
 function App() {
-  const [state, setState] = useState([{}]);
-
-  useEffect(() => {
-    fetch("/api")
-      .then(res => res.json())
-      .then(data => {
-        setState(data)
-      })
-  }, [])
-
   return (
-    <div>
-      <ul>
-        {typeof state.users === 'undefined' ? <p>Loading...</p> : 
-          state.users.map((user, i) => (
-            <p key={i}>{user}</p>
-          ))
-        }
-      </ul>
-    </div>
+    <RouterProvider router={router} />
   )
 }
 
