@@ -7,7 +7,7 @@ export default function MainNavigation() {
         <ul>
             <li>
                 <NavLink to="/">
-                    Home
+                    Feed
                 </NavLink>
             </li>
             <li>

@@ -12,7 +12,10 @@ export default function Login() {
                 <label htmlFor="">Password</label>
                 <input type="password" />
             </div>
-            <Link to="/">Create an account</Link>
+            <div>
+                <button>Login</button>
+            </div>
+            <Link to="signup">Create an account</Link>
         </div>
     )
 }
