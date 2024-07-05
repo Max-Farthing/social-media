@@ -1,11 +1,32 @@
+require('dotenv').config()
 const express = require('express')
+const mongoose = require('mongoose')
+
+const feedRoutes = require('./routes/feed') //feed routes
 
 const app = express()
 
 app.use(express.json())
 
-app.get("/api", (req, res, next) => {
-    res.json({"users": ["USER1", "USER2", "USER3"]})
+app.use((req, res, next) => { //setting permissions
+    res.setHeader('Access-Control-Allow-Origin', '*')
+    res.setHeader(
+        'Access-Control-Allow-Methods',
+        'OPTIONS, GET, POST, PUT, PATCH, DELETE'
+    )
+    res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization')
+    next()
 })
 
-app.listen(5000, () => console.log("Server started on port 5000"))
+app.use('/feed', feedRoutes) //routes to feed API
+
+const databaseConnection = process.env.DATABASE_URL //database 
+
+mongoose
+    .connect(
+        databaseConnection
+    )
+    .then(result => {
+        app.listen(5000, () => console.log("Server started on port 5000"))
+    })
+    .catch(err => console.log(err))

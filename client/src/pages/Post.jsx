@@ -8,7 +8,26 @@ export default function Post() {
         console.log("title: " + title)
         console.log("description: " + description)
 
+        const newPost = {
+            title,
+            description
+        }
+
         //implement fetch call here
+        fetch("http://localhost:5000/feed/post", {
+            method: "POST",
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(newPost)
+        })
+        .then(response => {
+            return response.json()
+        })
+        .then(data => {
+            console.log(data)
+        })
+        .catch(err => console.log(err))
 
         setTitle('')
         setDescription('')
