@@ -8,7 +8,7 @@ exports.createPost = (req, res, next) => {
         title,
         description
     })
-    
+
     post
         .save()
         .then(result => {
@@ -24,8 +24,19 @@ exports.getPosts = (req, res, next) => {
     Post.find()
         .then(data => {
             res.status(201).json({
-                message: "All posts grabbed",
                 posts: data
+            })
+        })
+        .catch(err => console.log(err))
+}
+
+exports.deletePost = (req, res, next) => {
+    const id = req.params.postId
+    Post.findByIdAndDelete(id)
+        .then(result => {
+            res.status(201).json({
+                message: "Task deleted",
+                posts: result
             })
         })
         .catch(err => console.log(err))

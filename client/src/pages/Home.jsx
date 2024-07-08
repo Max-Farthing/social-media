@@ -30,6 +30,19 @@ export default function HomePage() {
     setShowModal(false)
   }
 
+  function handleDeletePost() {
+    const id = selectedPost._id
+    let index = posts.posts.findIndex(post => post._id === id)
+    setPosts(oldPosts => {
+      console.log(oldPosts)
+      const newPosts = {...oldPosts}
+      newPosts.posts.splice(index, 1)
+      console.log(newPosts)
+      return newPosts
+    })
+    setShowModal(false)
+  }
+
   return (
     <>
       <button onClick={handleClickNewPost}>Create a new post</button>
@@ -47,6 +60,7 @@ export default function HomePage() {
       </div>
       {showModal && <Modal onClose={handleCloseModal}>
         <p>{selectedPost.title}</p>
+        <button onClick={handleDeletePost}>Delete Post</button>
       </Modal>}
     </>
   )
