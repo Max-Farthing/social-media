@@ -19,3 +19,14 @@ exports.createPost = (req, res, next) => {
         })
         .catch(err => console.log(err))
 }
+
+exports.getPosts = (req, res, next) => {
+    Post.find()
+        .then(data => {
+            res.status(201).json({
+                message: "All posts grabbed",
+                posts: data
+            })
+        })
+        .catch(err => console.log(err))
+}

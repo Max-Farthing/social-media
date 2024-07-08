@@ -1,6 +1,8 @@
 import React, { useState } from 'react'
+import { useNavigate } from "react-router-dom"
 
 export default function Post() {
+    const navigate = useNavigate()
     const [title, setTitle] = useState('')
     const [description, setDescription] = useState('')
 
@@ -13,7 +15,7 @@ export default function Post() {
             description
         }
 
-        //implement fetch call here
+        //creates new post in database
         fetch("http://localhost:5000/feed/post", {
             method: "POST",
             headers: {
@@ -31,6 +33,7 @@ export default function Post() {
 
         setTitle('')
         setDescription('')
+        navigate('/')
     }
 
     return (
