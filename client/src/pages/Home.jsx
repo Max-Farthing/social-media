@@ -15,7 +15,7 @@ export default function HomePage() {
         setPosts(data)
       })
       .catch(err => console.log(err))
-  }, [])
+  }, [showModal]) //might need dependency change
 
   function handleClickNewPost() {
     navigate('/post')
@@ -33,14 +33,20 @@ export default function HomePage() {
   function handleDeletePost() {
     const id = selectedPost._id
     let index = posts.posts.findIndex(post => post._id === id)
-    setPosts(oldPosts => {
-      console.log(oldPosts)
-      const newPosts = {...oldPosts}
-      newPosts.posts.splice(index, 1)
-      console.log(newPosts)
-      return newPosts
+
+    fetch(`http://localhost:5000/feed/post/${id}`, {
+      method: "DELETE",
     })
-    setShowModal(false)
+      .then(response => {
+        setPosts(oldPosts => {
+          const newPosts = { ...oldPosts }
+          newPosts.posts.splice(index, 1)
+          return newPosts
+        })
+        setShowModal(false)
+      })
+      .catch(err => console.log(err))
+
   }
 
   return (
