@@ -13,6 +13,7 @@ export default function HomePage() {
       .then(res => res.json())
       .then(data => {
         setPosts(data)
+        console.log('load')
       })
       .catch(err => console.log(err))
   }, [showModal]) //might need dependency change
@@ -49,6 +50,18 @@ export default function HomePage() {
 
   }
 
+  function toggleLike(post) {
+    let index = posts.posts.findIndex(p => p._id === post._id)
+    const updatedTask = { ...post }
+    updatedTask.likes += 1
+    console.log(updatedTask)
+    setPosts(oldPosts => {
+      const newPosts = {...oldPosts}
+      newPosts[index] = updatedTask
+      return newPosts
+    })
+  }
+
   return (
     <>
       <button onClick={handleClickNewPost}>Create a new post</button>
@@ -60,6 +73,8 @@ export default function HomePage() {
             <li onClick={() => handleClickPost(post)} key={post._id}>
               <p>{post.title}</p>
               <p>{post.description}</p>
+              <button onClick={() => toggleLike(post)}>Like</button>
+              <p>Likes: {post.likes}</p>
             </li>
           ))
         )}

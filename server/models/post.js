@@ -10,6 +10,10 @@ const postSchema = new Schema ({
         type: String,
         required: true,
     },
+    likes: {
+        type: Number,
+        required: true
+    },
     // creator: {
     // implemented in the future
     // }

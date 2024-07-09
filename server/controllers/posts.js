@@ -3,10 +3,12 @@ const Post = require('../models/post')
 exports.createPost = (req, res, next) => {
     const title = req.body.title
     const description = req.body.description
+    const likes = 0
 
     const post = new Post({
         title,
-        description
+        description,
+        likes
     })
 
     post
