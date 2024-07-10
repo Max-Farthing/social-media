@@ -14,9 +14,10 @@ const postSchema = new Schema ({
         type: Number,
         required: true
     },
-    // creator: {
-    // implemented in the future
-    // }
+    creator: {
+        type: Schema.Types.ObjectId,
+        ref: 'User',
+    }
 })
 
 module.exports = mongoose.model("Post", postSchema)
