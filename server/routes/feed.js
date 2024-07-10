@@ -10,6 +10,9 @@ router.get('/post', postController.getPosts)
 //  POST* feed/post  
 router.post('/post', postController.createPost)
 
+//  PATCH* feed/post/:postId   adding a like
+router.patch('/post/:postId', postController.addLike)
+
 //  DELETE* feed/post/:postId
 router.delete('/post/:postId', postController.deletePost)
 

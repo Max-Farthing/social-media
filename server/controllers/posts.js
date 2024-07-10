@@ -38,7 +38,21 @@ exports.deletePost = (req, res, next) => {
         .then(result => {
             res.status(201).json({
                 message: "Task deleted",
-                posts: result
+                post: result
+            })
+        })
+        .catch(err => console.log(err))
+}
+
+exports.addLike = (req, res, next) => {
+    const id = req.params.postId
+    const update = { $inc: { likes: 1 } }
+    const options = { new: true }
+    Post.findByIdAndUpdate(id, update, options)
+        .then(updatedPost => {
+            res.status(201).json({
+                message: "Likes updated",
+                post: updatedPost
             })
         })
         .catch(err => console.log(err))

@@ -8,15 +8,15 @@ export default function HomePage() {
   const [selectedPost, setSelectedPost] = useState({})
   const [showModal, setShowModal] = useState(false)
 
+  //loads the initial state
   useEffect(() => {
     fetch("http://localhost:5000/feed/post")
       .then(res => res.json())
       .then(data => {
         setPosts(data)
-        console.log('load')
       })
       .catch(err => console.log(err))
-  }, [showModal]) //might need dependency change
+  }, []) //need dependency change
 
   function handleClickNewPost() {
     navigate('/post')
@@ -52,14 +52,25 @@ export default function HomePage() {
 
   function toggleLike(post) {
     let index = posts.posts.findIndex(p => p._id === post._id)
-    const updatedTask = { ...post }
-    updatedTask.likes += 1
-    console.log(updatedTask)
-    setPosts(oldPosts => {
-      const newPosts = {...oldPosts}
-      newPosts[index] = updatedTask
-      return newPosts
+    const id = post._id
+
+    fetch(`http://localhost:5000/feed/post/${id}`, {
+      method: "PATCH",
+      headers: {
+        'Content-Type': 'application/json'
+      }
     })
+      .then(response => response.json()
+      .then(data => {
+        setPosts(oldPosts => {
+          const newPosts = { ...oldPosts }
+          newPosts.posts[index] = data.post
+          return newPosts
+        })
+        setShowModal(false)
+      }))
+      .catch(err => console.log(err))
+
   }
 
   return (
