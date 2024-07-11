@@ -2,6 +2,7 @@ require('dotenv').config()
 const express = require('express')
 const mongoose = require('mongoose')
 
+const authRoutes = require('./routes/auth')
 const feedRoutes = require('./routes/feed') //feed routes
 
 const app = express()
@@ -19,6 +20,7 @@ app.use((req, res, next) => { //setting permissions
 })
 
 app.use('/feed', feedRoutes) //routes to feed API
+app.use('/auth', authRoutes) //routes to auth API
 
 const databaseConnection = process.env.DATABASE_URL //database 
 
