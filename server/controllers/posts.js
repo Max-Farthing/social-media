@@ -5,19 +5,41 @@ exports.createPost = (req, res, next) => {
     const description = req.body.description
     const likes = 0
 
+    const creator = req.userId ? req.userId : 'Anonymous';
+
     const post = new Post({
         title,
         description,
-        likes
+        likes,
+        creator
     })
 
     post
         .save()
         .then(result => {
-            res.status(201).json({
-                message: 'Post Created',
-                post: result
-            })
+            if(req.userId) {
+                return User.findById(req.userId)
+                .then(user => {
+                    if(!user) {
+                        throw new Error("User not found")
+                    }
+                    user.posts.push(post)
+                    return user.save()
+                })
+                .then(user => {
+                    res.status(201).json({
+                        message: 'Post Created',
+                        post: result,
+                        creator: { _id: user._id, name: user.name}
+                    })
+                })
+            } else {
+                res.status(201).json({
+                    message: "Post Created",
+                    post: result,
+                    creator: { name: 'Anonymous' }
+                })
+            }
         })
         .catch(err => console.log(err))
 }
