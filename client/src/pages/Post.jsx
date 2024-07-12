@@ -9,10 +9,12 @@ export default function Post() {
     function createPost() {
         console.log("title: " + title)
         console.log("description: " + description)
+        let userId = localStorage.getItem('userId')
 
         const newPost = {
             title,
-            description
+            description,
+            userId
         }
 
         //creates new post in database
