@@ -1,11 +1,12 @@
 const Post = require('../models/post')
+const User = require('../models/user')
 
 exports.createPost = (req, res, next) => {
     const title = req.body.title
     const description = req.body.description
     const likes = 0
 
-    const creator = req.userId ? req.userId : null;
+    const creator = req.body.userId ? req.body.userId : null;
 
     const post = new Post({
         title,
@@ -14,13 +15,11 @@ exports.createPost = (req, res, next) => {
         creator
     })
 
-    console.log(creator)
-
     post
         .save()
         .then(result => {
-            if(req.userId) {
-                return User.findById(req.userId)
+            if(req.body.userId) {
+                return User.findById(req.body.userId)
                 .then(user => {
                     if(!user) {
                         throw new Error("User not found")
@@ -58,13 +57,13 @@ exports.getPosts = (req, res, next) => {
 
 exports.deletePost = (req, res, next) => {
     const postId = req.params.postId
-    Post.findByIdAndDelete(postId) //change back when needed
-    //  => {
-        // if(post.creator.toString() !== req.userid && post.creator.toString() !== null) {
-        //     return res.status(403).json({ message: "Not authorized to dlete this post "})
-        // }
-        // return Post.findByIdAndDelete(postId)
-    // })
+    Post.findByIdAndDelete(postId) 
+    .then(post => {
+        if(post.creator.toString() !== req.body.userid && post.creator.toString() !== null) {
+            return res.status(403).json({ message: "Not authorized to delete this post "})
+        }
+        return Post.findById(postId)
+    })
     .then(result => {
         res.status(200).json({
             message: "Post deleted",

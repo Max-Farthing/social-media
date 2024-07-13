@@ -7,9 +7,10 @@ export default function Post() {
     const [description, setDescription] = useState('')
 
     function createPost() {
-        console.log("title: " + title)
-        console.log("description: " + description)
+        // console.log("title: " + title)
+        // console.log("description: " + description)
         let userId = localStorage.getItem('userId')
+        // console.log(userId)
 
         const newPost = {
             title,
