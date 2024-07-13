@@ -57,12 +57,13 @@ exports.getPosts = (req, res, next) => {
 
 exports.deletePost = (req, res, next) => {
     const postId = req.params.postId
+    const userId = req.params.userId
     let creator
     Post.findById(postId) 
     .then(post => {
         creator = post.creator
-        if(post.creator.toString() !== req.body.userid && post.creator.toString() !== null) {
-            return res.status(403).json({ message: "Not authorized to delete this post "})
+        if(post.creator.toString() !== userId && post.creator.toString() !== null) {
+            throw new Error("Not authorized to delete this post ")
         }
         return Post.findByIdAndDelete(postId)
     })

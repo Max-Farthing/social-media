@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { useNavigate } from 'react-router-dom'
+import { json, useNavigate } from 'react-router-dom'
 import Modal from '../components/Modal'
 
 export default function HomePage() {
@@ -34,9 +34,13 @@ export default function HomePage() {
   function handleDeletePost() {
     const id = selectedPost._id
     let index = posts.posts.findIndex(post => post._id === id)
+    const userId = localStorage.getItem('userId')
 
-    fetch(`http://localhost:5000/feed/post/${id}`, {
+    fetch(`http://localhost:5000/feed/post/${id}/${userId}?`, {
       method: "DELETE",
+      headers: {
+        'Content-Type': 'application/json'
+      },
     })
       .then(response => {
         setPosts(oldPosts => {

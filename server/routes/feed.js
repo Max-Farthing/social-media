@@ -15,6 +15,6 @@ router.post('/post', postController.createPost)
 router.patch('/post/:postId', postController.addLike)
 
 //  DELETE* feed/post/:postId
-router.delete('/post/:postId', postController.deletePost)
+router.delete('/post/:postId/:userId', postController.deletePost)
 
 module.exports = router
