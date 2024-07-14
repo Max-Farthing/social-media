@@ -2,7 +2,9 @@ import React, { useEffect, useState } from 'react'
 import { json, useNavigate } from 'react-router-dom'
 import Modal from '../components/Modal'
 
+
 export default function HomePage() {
+  const token = localStorage.getItem('token')
   const navigate = useNavigate()
   const [posts, setPosts] = useState([{}])
   const [selectedPost, setSelectedPost] = useState({})
@@ -39,6 +41,7 @@ export default function HomePage() {
     fetch(`http://localhost:5000/feed/post/${id}/${userId}?`, {
       method: "DELETE",
       headers: {
+        Authorization: 'Bearer ' + token,
         'Content-Type': 'application/json'
       },
     })

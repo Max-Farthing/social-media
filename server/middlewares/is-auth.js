@@ -4,10 +4,10 @@ const jwt = require('jsonwebtoken')
 const secret = process.env.JWT_SECRET
 
 module.exports = (req, res, next) => {
-    const authHeader = req.get('Authorization')
-    if(!authHeader) {
-        return res.status(401).json({ message: "Not Authenticated"})
-    }
+    // const authHeader = req.get('Authorization')
+    // if(!authHeader) {
+    //     return res.status(401).json({ message: "Not Authenticated"})
+    // }
     const token = req.get('Authorization').split(' ')[1]
     let decodedToken;
     try {
