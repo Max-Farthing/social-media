@@ -1,8 +1,10 @@
 import React, { useState } from 'react'
 import { Link } from 'react-router-dom'
+import { useAuth } from '../store/AuthContext'
 
 export default function Login() {
     const [error, setError] = useState(null)
+    const { login } = useAuth()
 
     function handleLogin(event) {
         event.preventDefault()
@@ -16,6 +18,8 @@ export default function Login() {
             userName: data.userName,
             password: data.password
         }
+
+        let userName = data.userName
 
         fetch('http://localhost:5000/auth/login', {
             method: "POST",
@@ -32,9 +36,15 @@ export default function Login() {
             return response.json()
         })
         .then(data => {
-            console.log(data)
             localStorage.setItem('token', data.token)
             localStorage.setItem('userId', data.userId)
+            const user = {
+                userName: userName,
+                token: data.token,
+                userId: data.userId
+            }
+            console.log(user)
+            login(user)
         })
         .catch(err => console.log(err))
 
