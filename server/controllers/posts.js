@@ -61,10 +61,10 @@ exports.deletePost = (req, res, next) => {
     let creator
     Post.findById(postId) 
     .then(post => {
-        creator = post.creator
-        if(post.creator.toString() !== userId && post.creator.toString() !== null) {
+        if(post.creator !== null && post.creator.toString() !== userId) {
             throw new Error("Not authorized to delete this post ")
         }
+        creator = post.creator
         return Post.findByIdAndDelete(postId)
     })
     .then(deletedPost => {
@@ -97,4 +97,15 @@ exports.addLike = (req, res, next) => {
             })
         })
         .catch(err => console.log(err))
+}
+
+exports.findUserPosts = (req, res, next) => {
+    const userId = req.params.userId
+    User.findById(userId)
+    .then(user => {
+        res.status(200).json({
+            posts: user.posts
+        })
+    })
+    .catch(err => console.log(err))
 }

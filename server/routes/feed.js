@@ -17,4 +17,6 @@ router.patch('/post/:postId', postController.addLike)
 //  DELETE* feed/post/:postId
 router.delete('/post/:postId/:userId', isAuth, postController.deletePost)
 
+router.get('/profile/:userId', postController.findUserPosts)
+
 module.exports = router
