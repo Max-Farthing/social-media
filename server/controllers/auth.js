@@ -30,20 +30,31 @@ exports.login = (req, res, next) => {
     User.findOne({ userName: userName })
         .then(user => {
             if (!user) {
-                return res.status(404).json({ message: "User not found"})
+                return res.status(404).json({ message: "User not found" })
             }
             loadedUser = user
             return password === user.password
         })
         .then(isEqual => {
             if (!isEqual) {
-                return res.status(401).json({ message: "Wrong Password"})
+                return res.status(401).json({ message: "Wrong Password" })
             }
             const token = jwt.sign({
                 userName: loadedUser.userName,
                 userId: loadedUser._id.toString()
             }, secret, { expiresIn: '1h' })
             res.status(200).json({ token, userId: loadedUser._id.toString() })
+        })
+        .catch(err => console.log(err))
+}
+
+exports.findUser = (req, res, next) => {
+    const userId = req.params.userId
+    User.findById(userId)
+        .then(user => {
+            res.status(200).json({
+                user
+            })
         })
         .catch(err => console.log(err))
 }

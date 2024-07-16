@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import Modal from '../components/Modal'
-import { useAuth } from '../store/AuthContext'
 
 export default function HomePage() {
   const token = localStorage.getItem('token')
@@ -9,7 +8,6 @@ export default function HomePage() {
   const [posts, setPosts] = useState([{}])
   const [selectedPost, setSelectedPost] = useState({})
   const [showModal, setShowModal] = useState(false)
-  const { isAuthenticated, login, user } = useAuth()
 
   //loads the initial state
   useEffect(() => {
@@ -20,8 +18,6 @@ export default function HomePage() {
       })
       .catch(err => console.log(err))
   }, []) //need dependency change
-
-  
 
   function handleClickNewPost() {
     navigate('/post')

@@ -10,12 +10,13 @@ export default function ProfilePage() {
         return <Navigate to="/login" />
     }
 
-    const userId = user.userId
+    const userId = user.user._id
 
     useEffect(() => {
         fetch(`http://localhost:5000/feed/profile/${userId}`)
             .then(response => response.json())
             .then(data => {
+                console.log(user)
                 setPosts(data)
             })
             .catch(err => console.log(err))

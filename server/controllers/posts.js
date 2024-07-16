@@ -103,9 +103,10 @@ exports.findUserPosts = (req, res, next) => {
     const userId = req.params.userId
     User.findById(userId)
     .then(user => {
-        res.status(200).json({
-            posts: user.posts
-        })
+        return Post.find({ _id: { $in: user.posts }})
+    })
+    .then(posts => {
+        res.status(200).json(posts)
     })
     .catch(err => console.log(err))
 }
