@@ -96,7 +96,8 @@ export default function HomePage() {
         )}
       </div>
       {showModal && <Modal onClose={handleCloseModal}>
-        <p>{selectedPost.title}</p>
+        <h1>{selectedPost.title}</h1>
+        <p>{selectedPost.description}</p>
         <button onClick={handleDeletePost}>Delete Post</button>
       </Modal>}
     </>

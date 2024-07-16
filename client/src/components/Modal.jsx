@@ -1,12 +1,15 @@
-import React from 'react'
+import React from 'react';
+import './Modal.css';
 
-export default function Modal({onClose, children}) {
+export default function Modal({ onClose, children }) {
   return (
-    <div>
-        <button onClick={onClose}>
-            &times;
+    <div className="modal-backdrop">
+      <div className="modal">
+        <button className="close-button" onClick={onClose}>
+          &times;
         </button>
         {children}
+      </div>
     </div>
-  )
+  );
 }

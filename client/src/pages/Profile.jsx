@@ -16,7 +16,6 @@ export default function ProfilePage() {
         fetch(`http://localhost:5000/feed/profile/${userId}`)
             .then(response => response.json())
             .then(data => {
-                console.log(user)
                 setPosts(data)
             })
             .catch(err => console.log(err))
@@ -24,7 +23,7 @@ export default function ProfilePage() {
 
     return (
         <div>
-            <p>{user.userName}</p>
+            <p>{user.user.userName}</p>
             <ul>
                 {posts.map(post => (
                     <li key={post._id}>

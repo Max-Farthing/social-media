@@ -1,10 +1,11 @@
 import React, { useState } from 'react'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import { useAuth } from '../store/AuthContext'
 
 export default function Login() {
     const [error, setError] = useState(null)
     const { login } = useAuth()
+    const navigate = useNavigate()
 
     function handleLogin(event) {
         event.preventDefault()
@@ -49,6 +50,7 @@ export default function Login() {
         .catch(err => console.log(err))
 
         event.target.reset()
+        navigate('/')
     }
 
     return (
