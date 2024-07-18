@@ -1,4 +1,55 @@
-/* * {
-    color: white;
-    background-color: black;
-} */
+* {
+    box-sizing: border-box;
+    background-color: #ffffff;
+}
+
+li {
+    list-style-type: none;
+}
+
+p, h2 {
+    color: #212121;
+}
+
+button:hover {
+    cursor: pointer;
+}
+
+a {
+    color: #e91e63;
+    text-decoration: none;
+}
+
+a:hover {
+    font-weight: bold;
+}
+
+button {
+    border: 2px solid #ffffff;
+    color: #e91e63; 
+    border-radius: 50px;
+}
+
+button:hover {
+    font-weight: bold;
+}
+
+.navigation {
+    display: flex;
+    justify-content: space-around;
+}
+
+.posts {
+    display: flex;
+    justify-content: space-around;
+    border: 1px solid rgb(136, 134, 134);
+}
+
+#create-button {
+    margin-bottom: 7.5px;
+    border: 1px solid rgb(136, 134, 134);
+}
+
+#create-button:hover {
+    background-color: rgb(230, 230, 230);
+}

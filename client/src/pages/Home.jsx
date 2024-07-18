@@ -80,8 +80,8 @@ export default function HomePage() {
 
   return (
     <>
-      <button onClick={handleClickNewPost}>Create a new post</button>
-      <div>
+      <button id='create-button' onClick={handleClickNewPost}>Create a new post</button>
+      <div className='posts'>
         {typeof posts.posts === 'undefined' || posts.posts.length === 0 ? (
           <p>Feed Empty</p>
         ) : (

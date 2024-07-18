@@ -12,7 +12,7 @@ export default function MainNavigation() {
 
     return (
         <header>
-            <ul>
+            <ul className='navigation'>
                 <li>
                     <NavLink to="/">
                         Feed
@@ -34,6 +34,7 @@ export default function MainNavigation() {
                     </NavLink>
                 </li>}
             </ul>
+            <hr />
         </header>
     )
 }
