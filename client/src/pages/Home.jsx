@@ -82,12 +82,12 @@ export default function HomePage() {
     <>
       <button onClick={handleClickNewPost}>Create a new post</button>
       <div>
-        {typeof posts.posts === 'undefined' ? (
+        {typeof posts.posts === 'undefined' || posts.posts.length === 0 ? (
           <p>Feed Empty</p>
         ) : (
           posts.posts.map(post => (
             <li onClick={() => handleClickPost(post)} key={post._id}>
-              <p>{post.title}</p>
+              <h2>{post.title}</h2>
               <p>{post.description}</p>
               <button onClick={() => toggleLike(post)}>Like</button>
               <p>Likes: {post.likes}</p>
