@@ -22,12 +22,12 @@ export default function ProfilePage() {
     }, [isAuthenticated])
 
     return (
-        <div>
-            <p>{user.user.userName}</p>
+        <div className='profile'>
+            <h1>{user.user.userName}'s profile</h1>
             <ul>
                 {posts.map(post => (
                     <li className='post' key={post._id}>
-                        <p>{post.title}</p>
+                        <h3 className='title'>{post.title}</h3>
                         <p>{post.description}</p>
                     </li>
                 ))}

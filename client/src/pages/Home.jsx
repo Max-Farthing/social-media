@@ -80,7 +80,7 @@ export default function HomePage() {
 
   return (
     <>
-      <button id='create-button' onClick={handleClickNewPost}>Create a new post</button>
+      <button id='create-button' onClick={handleClickNewPost}>New Post &#9993;</button>
       <div className='posts'>
         {typeof posts.posts === 'undefined' || posts.posts.length === 0 ? (
           <p>Feed Empty</p>
@@ -89,8 +89,7 @@ export default function HomePage() {
             <li className='post' onClick={() => handleClickPost(post)} key={post._id}>
               <h2>{post.title}</h2>
               <p>{post.description}</p>
-              <button onClick={() => toggleLike(post)}>Like</button>
-              <p>Likes: {post.likes}</p>
+              <button onClick={() => toggleLike(post)}>&#10084; {post.likes}</button>
             </li>
           ))
         )}

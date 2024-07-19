@@ -1,6 +1,7 @@
 * {
     box-sizing: border-box;
     background-color: #ffffff;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
 }
 
 li {
@@ -25,9 +26,9 @@ a:hover {
 }
 
 button {
-    border: 2px solid #ffffff;
     color: #e91e63; 
     border-radius: 50px;
+    border: none;
 }
 
 button:hover {
@@ -55,6 +56,8 @@ button:hover {
 #create-button {
     margin-bottom: 7.5px;
     border: 1px solid rgb(136, 134, 134);
+    width: 5rem;
+    height: 3rem;
 }
 
 #create-button:hover {
@@ -72,10 +75,90 @@ button:hover {
 
 div > .post:hover {
     cursor: pointer;
+    background-color: rgb(230, 230, 230);
+}
+
+div > .post:hover > * {
+    background-color: rgb(230, 230, 230);       
 }
 
 main {
     padding-top: 4rem;
     margin-left: 10%;
     margin-right: 10%;
+}
+
+.post-creation {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border: 1px solid black;
+}
+
+.post-creation > div {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.post-creation > div > textarea, input {
+    resize: none;
+    border-radius: 10px;
+    width: 15rem;
+}
+
+.post-creation > div > textarea {
+
+    height: 5rem;
+}
+
+.post-creation button {
+    border: 1px solid black;
+    margin-bottom: 1rem;
+}
+
+.post-creation button:hover {
+    background-color: rgb(230, 230, 230);
+}
+
+.post-creation > * {
+    padding: 1rem;
+}
+
+.login {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border: 1px solid black;
+    height: 10rem;
+    justify-content: space-evenly;
+}
+
+.login > div {
+    margin: 2px;
+}
+
+.login-button, .account-link {
+    border: 1px solid black;
+    padding: .5rem;
+    border-radius: 10rem;
+}
+
+.login-button:hover, .account-link:hover {
+    background-color: rgb(230, 230, 230);
+}
+
+.profile {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.profile > p {
+    font-weight: bold;
+    font-size: larger;
+}
+
+.title {
+    font-weight: bold;
 }

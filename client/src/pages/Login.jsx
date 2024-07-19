@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { Link, useNavigate } from 'react-router-dom'
+import { NavLink, useNavigate } from 'react-router-dom'
 import { useAuth } from '../store/AuthContext'
 
 export default function Login() {
@@ -54,7 +54,7 @@ export default function Login() {
     }
 
     return (
-        <form onSubmit={handleLogin}>
+        <form className='login' onSubmit={handleLogin}>
             <div>
                 <label htmlFor="userName">Username</label>
                 <input type="text" id='userName' name='userName' required />
@@ -65,9 +65,9 @@ export default function Login() {
             </div>
             {error && <p style={{ color: 'red' }}>{error}</p>}            
             <div>
-                <button type='submit'>Login</button>
+                <button className='login-button' type='submit'>Login</button>
             </div>
-            <Link to="signup">Create an account</Link>
+            <NavLink className='account-link' to="signup">Create an account</NavLink>
         </form>
     )
 }
