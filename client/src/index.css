@@ -34,14 +34,21 @@ button:hover {
     font-weight: bold;
 }
 
+.header {
+    top: 0;
+    position: fixed;
+    width: 100%;
+}
+
 .navigation {
     display: flex;
     justify-content: space-around;
 }
 
 .posts {
-    display: flex;
-    justify-content: space-around;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 1rem;
     border: 1px solid rgb(136, 134, 134);
 }
 
@@ -52,4 +59,23 @@ button:hover {
 
 #create-button:hover {
     background-color: rgb(230, 230, 230);
+}
+
+.post {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border: 1px solid black;
+    padding: 3%;
+}
+
+div > .post:hover {
+    cursor: pointer;
+}
+
+main {
+    padding-top: 4rem;
+    margin-left: 10%;
+    margin-right: 10%;
 }

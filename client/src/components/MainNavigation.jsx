@@ -11,7 +11,7 @@ export default function MainNavigation() {
     }
 
     return (
-        <header>
+        <header className='header'>
             <ul className='navigation'>
                 <li>
                     <NavLink to="/">

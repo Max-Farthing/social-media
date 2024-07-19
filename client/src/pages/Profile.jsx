@@ -26,7 +26,7 @@ export default function ProfilePage() {
             <p>{user.user.userName}</p>
             <ul>
                 {posts.map(post => (
-                    <li key={post._id}>
+                    <li className='post' key={post._id}>
                         <p>{post.title}</p>
                         <p>{post.description}</p>
                     </li>
