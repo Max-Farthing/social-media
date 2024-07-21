@@ -56,11 +56,11 @@ export default function Login() {
     return (
         <form className='login' onSubmit={handleLogin}>
             <div>
-                <label htmlFor="userName">Username</label>
+                <label htmlFor="userName">Username: </label>
                 <input type="text" id='userName' name='userName' required />
             </div>
             <div>
-                <label htmlFor="password">Password</label>
+                <label htmlFor="password">Password: </label>
                 <input type="password" id='password' name='password' required />
             </div>
             {error && <p style={{ color: 'red' }}>{error}</p>}            
