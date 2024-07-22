@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import Modal from '../components/Modal'
+import { useAuth } from '../store/AuthContext'
 
 export default function HomePage() {
   const token = localStorage.getItem('token')
@@ -8,6 +9,8 @@ export default function HomePage() {
   const [posts, setPosts] = useState([{}])
   const [selectedPost, setSelectedPost] = useState({})
   const [showModal, setShowModal] = useState(false)
+  const [likedPosts, setLikedPosts] = useState(new Set())
+  const { user } = useAuth()
 
   //loads the initial state
   useEffect(() => {
@@ -57,6 +60,10 @@ export default function HomePage() {
   }
 
   function toggleLike(post) {
+    if (likedPosts.has(post._id)) {
+      return
+    }
+
     let index = posts.posts.findIndex(p => p._id === post._id)
     const id = post._id
 
@@ -67,15 +74,17 @@ export default function HomePage() {
       }
     })
       .then(response => response.json()
-      .then(data => {
-        setPosts(oldPosts => {
-          const newPosts = { ...oldPosts }
-          newPosts.posts[index] = data.post
-          return newPosts
-        })
-        setShowModal(false)
-      }))
+        .then(data => {
+          setPosts(oldPosts => {
+            const newPosts = { ...oldPosts }
+            newPosts.posts[index] = data.post
+            return newPosts
+          })
+          setShowModal(false)
+        }))
       .catch(err => console.log(err))
+
+      setLikedPosts(prevLikedPosts => new Set(prevLikedPosts).add(post._id))
   }
 
   return (
@@ -90,15 +99,21 @@ export default function HomePage() {
               <p className='userName'>{post.userName || 'Anonymous'}</p>
               <h2>{post.title}</h2>
               <p>{post.description}</p>
-              <button onClick={() => toggleLike(post)}>&#10084; {post.likes}</button>
+              <button onClick={(e) => { 
+                e.stopPropagation()
+                toggleLike(post) 
+                }}>
+                &#10084; {post.likes}
+              </button>
             </li>
           ))
         )}
       </div>
       {showModal && <Modal onClose={handleCloseModal}>
+        <p className='userName'>{selectedPost.userName || 'Anonymous'}</p>
         <h1>{selectedPost.title}</h1>
         <p>{selectedPost.description}</p>
-        <button onClick={handleDeletePost}>Delete Post</button>
+        {selectedPost.userName === user.user.userName && <button onClick={handleDeletePost}>Delete Post</button>}
       </Modal>}
     </>
   )
