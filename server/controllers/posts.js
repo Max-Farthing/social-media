@@ -6,13 +6,15 @@ exports.createPost = (req, res, next) => {
     const description = req.body.description
     const likes = 0
 
-    const creator = req.body.userId ? req.body.userId : null;
+    const creator = req.body.userId ? req.body.userId : null
+    const userName = req.body.userName ? req.body.userName : 'Anonymous'
 
     const post = new Post({
         title,
         description,
         likes,
-        creator
+        creator,
+        userName
     })
 
     post
@@ -31,14 +33,16 @@ exports.createPost = (req, res, next) => {
                     res.status(201).json({
                         message: 'Post Created',
                         post: result,
-                        creator: { _id: user._id, name: user.name}
+                        creator: { _id: user._id, name: user.name},
+                        userName: user.userName
                     })
                 })
             } else {
                 res.status(201).json({
                     message: "Post Created",
                     post: result,
-                    creator: { name: null }
+                    creator: { name: null },
+                    userName: 'Anonymous'
                 })
             }
         })

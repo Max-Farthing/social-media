@@ -23,15 +23,16 @@ export default function ProfilePage() {
 
     return (
         <div className='profile'>
-            <h1>{user.user.userName}'s profile</h1>
-            <ul>
+            <h1>{user.user.userName}</h1>
+            {posts.length === 0 ? <p>No Posts Yet</p> : <ul className='profile-posts'>
                 {posts.map(post => (
                     <li className='post' key={post._id}>
                         <h3 className='title'>{post.title}</h3>
                         <p>{post.description}</p>
+                        <button>&#10084; {post.likes}</button>
                     </li>
                 ))}
-            </ul>
+            </ul>}
         </div>
     )
 }

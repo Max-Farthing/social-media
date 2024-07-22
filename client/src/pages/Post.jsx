@@ -1,21 +1,22 @@
 import React, { useState } from 'react'
 import { useNavigate } from "react-router-dom"
+import { useAuth } from '../store/AuthContext'
 
 export default function Post() {
     const navigate = useNavigate()
     const [title, setTitle] = useState('')
     const [description, setDescription] = useState('')
 
+    const { user } = useAuth()
+
     function createPost() {
-        // console.log("title: " + title)
-        // console.log("description: " + description)
         let userId = localStorage.getItem('userId')
-        // console.log(userId)
 
         const newPost = {
             title,
             description,
-            userId
+            userId,
+            userName: user.user.userName
         }
 
         //creates new post in database
@@ -26,13 +27,14 @@ export default function Post() {
             },
             body: JSON.stringify(newPost)
         })
-        .then(response => {
-            return response.json()
-        })
-        .then(data => {
-            console.log(data)
-        })
-        .catch(err => console.log(err))
+            .then(response => {
+                return response.json()
+            })
+            .then(data => {
+                console.log(data)
+                console.log(user)
+            })
+            .catch(err => console.log(err))
 
         setTitle('')
         setDescription('')
@@ -47,10 +49,10 @@ export default function Post() {
             </div>
             <div>
                 <label htmlFor="">Details</label>
-                <textarea 
-                placeholder='Description (e.g., This guide will help you learn JavaScript from scratch...)' 
-                value={description} 
-                onChange={(event) => setDescription(event.target.value)}>
+                <textarea
+                    placeholder='Description (e.g., This guide will help you learn JavaScript from scratch...)'
+                    value={description}
+                    onChange={(event) => setDescription(event.target.value)}>
                 </textarea>
             </div>
             <button onClick={createPost}>Create Post</button>

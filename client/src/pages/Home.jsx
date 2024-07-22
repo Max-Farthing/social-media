@@ -87,6 +87,7 @@ export default function HomePage() {
         ) : (
           posts.posts.map(post => (
             <li className='post' onClick={() => handleClickPost(post)} key={post._id}>
+              <p className='userName'>{post.userName || 'Anonymous'}</p>
               <h2>{post.title}</h2>
               <p>{post.description}</p>
               <button onClick={() => toggleLike(post)}>&#10084; {post.likes}</button>

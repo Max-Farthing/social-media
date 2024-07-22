@@ -70,7 +70,7 @@ button:hover {
 .post {
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    justify-content: space-between;
     align-items: center;
     border: 1px solid black;
     padding: 3%;
@@ -156,11 +156,27 @@ main {
     align-items: center;
 }
 
+.profile-posts {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+}
+
 .profile > p {
     font-weight: bold;
     font-size: larger;
 }
 
 .title {
+    font-weight: bold;
+}
+
+.userName {
+    margin: 0;
+    padding: 0;
+    font-size: small;
+}
+
+.nav-link-active {
     font-weight: bold;
 }
