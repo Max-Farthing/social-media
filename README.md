@@ -132,7 +132,7 @@ Have an updated version of npm installed
 <!-- ROADMAP -->
 ## Roadmap
 
-- [ ] Add viewable profile section
+- [x] Add viewable profile section
 - [ ] Make profile customizeable
 - [ ] Respond to other posts
     - [ ] Create viewable threads of posts
