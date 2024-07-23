@@ -113,7 +113,7 @@ export default function HomePage() {
         <p className='userName'>{selectedPost.userName || 'Anonymous'}</p>
         <h1>{selectedPost.title}</h1>
         <p>{selectedPost.description}</p>
-        {selectedPost.userName === user.user.userName && <button onClick={handleDeletePost}>Delete Post</button>}
+        {user && selectedPost.userName === user.user.userName && <button onClick={handleDeletePost}>Delete Post</button>}
       </Modal>}
     </>
   )

@@ -6,20 +6,22 @@ export default function ProfilePage() {
     const { user, isAuthenticated } = useAuth()
     const [posts, setPosts] = useState([])
 
-    if (!isAuthenticated) {
+    useEffect(() => {
+        if (isAuthenticated && user) {
+            const userId = user.user._id
+            fetch(`http://localhost:5000/feed/profile/${userId}`)
+                .then(response => response.json())
+                .then(data => {
+                    setPosts(data)
+                })
+                .catch(err => console.log(err))
+        }
+    }, [isAuthenticated])
+
+    if (!isAuthenticated || !user) {
         return <Navigate to="/login" />
     }
 
-    const userId = user.user._id
-
-    useEffect(() => {
-        fetch(`http://localhost:5000/feed/profile/${userId}`)
-            .then(response => response.json())
-            .then(data => {
-                setPosts(data)
-            })
-            .catch(err => console.log(err))
-    }, [isAuthenticated])
 
     return (
         <div className='profile'>

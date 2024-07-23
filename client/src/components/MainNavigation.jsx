@@ -18,8 +18,8 @@ export default function MainNavigation() {
                         Feed
                     </NavLink>
                 </li>
-                {isAuthenticated && <li>
-                    <NavLink to="/profile/:userId" className={({isActive}) => isActive ? 'nav-link-active' : undefined}>
+                {isAuthenticated && user.user && <li>
+                    <NavLink to={`/profile/${user.user.userName}`} className={({isActive}) => isActive ? 'nav-link-active' : undefined}>
                         Profile
                     </NavLink>
                 </li>}
