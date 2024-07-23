@@ -181,3 +181,19 @@ main {
 .nav-link-active {
     font-weight: bold;
 }
+
+.create-account-button {
+    border: 1px solid black;
+}
+
+.input-group {
+    display: flex;
+    align-items: center;
+    margin-bottom: 1rem;
+}
+
+.input-group label {
+    width: 150px;
+    text-align: right;
+    margin-right: 1rem;
+}

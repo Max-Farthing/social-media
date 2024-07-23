@@ -35,24 +35,24 @@ export default function NewAccount() {
     }
 
     return (
-        <form onSubmit={handleSubmit}>
-            <div>
-                <label htmlFor="email">Email</label>
+        <form className='login' onSubmit={handleSubmit}>
+            <div className='input-group'>
+                <label htmlFor="email">Email: </label>
                 <input id='email' type="email" name='email' required />
             </div>
-            <div>
-                <label htmlFor="userName">Username</label>
+            <div className='input-group'>
+                <label htmlFor="userName">Username: </label>
                 <input id='userName' type="text" name='userName' required />
             </div>
-            <div>
-                <label htmlFor="password">Password</label>
+            <div className='input-group'>
+                <label htmlFor="password">Password: </label>
                 <input id='password' type="password" name='password' required />
             </div>
-            <div>
-                <label htmlFor="confirm-password">Confirm Password</label>
+            <div className='input-group'>
+                <label htmlFor="confirm-password">Confirm Password: </label>
                 <input id='confirm-password' type="password" name='confirm-password' required />
             </div>
-            <button type='submit'>Create Account</button>
+            <button className='create-account-button' type='submit'>Create Account</button>
         </form>
     )
 }
