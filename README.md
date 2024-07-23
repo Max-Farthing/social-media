@@ -16,7 +16,7 @@
 <br />
 <div align="center">
   <a href="https://github.com/Max-Farthing/social-media">
-    <img src="images/logo.png" alt="Logo" width="80" height="80">
+    <!-- <img src="images/logo.png" alt="Logo" width="80" height="80"> -->
   </a>
 
 <h3 align="center">TwitClone - A Twitter-like Social Media Platform</h3>
@@ -57,7 +57,6 @@
     <li><a href="#usage">Usage</a></li>
     <li><a href="#roadmap">Roadmap</a></li>
     <li><a href="#contact">Contact</a></li>
-    <li><a href="#acknowledgments">Acknowledgments</a></li>
   </ol>
 </details>
 
@@ -66,7 +65,7 @@
 <!-- ABOUT THE PROJECT -->
 ## About The Project
 
-[![Product Name Screen Shot][product-screenshot]]<!--(https://example.com)-->
+![image](https://github.com/user-attachments/assets/50b1ae59-3692-4b84-b29f-1313f7069dbc)
 
 
 
@@ -101,7 +100,7 @@ Have an updated version of npm installed
    ```sh
    git clone https://github.com/Max-Farthing/social-media.git
    ```
-2. Install NPM packages in BOTH client and server folders
+2. Install npm packages in BOTH client and server folders
    ```sh
    npm install
    ```
@@ -156,6 +155,5 @@ Project Link: [https://github.com/Max-Farthing/social-media](https://github.com/
 <!-- https://www.markdownguide.org/basic-syntax/#reference-style-links -->
 [linkedin-shield]: https://img.shields.io/badge/-LinkedIn-black.svg?style=for-the-badge&logo=linkedin&colorB=555
 [linkedin-url]: https://linkedin.com/in/maximus-farthing
-[product-screenshot]: ![image](https://github.com/user-attachments/assets/50b1ae59-3692-4b84-b29f-1313f7069dbc)
 [React.js]: https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB
 [React-url]: https://reactjs.org/
