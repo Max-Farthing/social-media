@@ -20,7 +20,7 @@ export default function HomePage() {
         setPosts(data)
       })
       .catch(err => console.log(err))
-  }, []) //need dependency change
+  }, [showModal])
 
   function handleClickNewPost() {
     navigate('/post')
