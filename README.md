@@ -19,10 +19,10 @@
     <!-- <img src="images/logo.png" alt="Logo" width="80" height="80"> -->
   </a>
 
-<h3 align="center">TwitClone - A Twitter-like Social Media Platform</h3>
+<h3 align="center">ChirpChain - A Twitter-like Social Media Platform</h3>
 
   <p align="center">
-    TwitClone is a social media application designed to mimic the core functionalities of Twitter, enabling users to share short messages (tweets), and interact through likes and comments. The project aims to showcase my full-stack development skills, including user authentication, real-time updates, and a responsive UI.
+    ChirpChain is a social media application designed to mimic the core functionalities of Twitter, enabling users to share short messages (tweets), and interact through likes and comments. The project aims to showcase my full-stack development skills, including user authentication, real-time updates, and a responsive UI.
     <br />
     <a href="https://github.com/Max-Farthing/social-media"><strong>Explore the docs »</strong></a>
     <br />
