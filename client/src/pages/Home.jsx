@@ -12,9 +12,10 @@ export default function HomePage() {
   const [likedPosts, setLikedPosts] = useState(new Set())
   const { user } = useAuth()
 
+  const apiUrl = import.meta.env.VITE_API_URL;
   //loads the initial state
   useEffect(() => {
-    fetch("http://localhost:5000/feed/post")
+    fetch(`${apiUrl}/feed/post`)
       .then(res => res.json())
       .then(data => {
         setPosts(data)
@@ -40,7 +41,7 @@ export default function HomePage() {
     let index = posts.posts.findIndex(post => post._id === id)
     const userId = localStorage.getItem('userId')
 
-    fetch(`http://localhost:5000/feed/post/${id}/${userId}?`, {
+    fetch(`${apiUrl}/feed/post/${id}/${userId}?`, {
       method: "DELETE",
       headers: {
         Authorization: 'Bearer ' + token,
@@ -67,7 +68,7 @@ export default function HomePage() {
     let index = posts.posts.findIndex(p => p._id === post._id)
     const id = post._id
 
-    fetch(`http://localhost:5000/feed/post/${id}`, {
+    fetch(`${apiUrl}/feed/post/${id}`, {
       method: "PATCH",
       headers: {
         'Content-Type': 'application/json'

@@ -18,7 +18,8 @@ export default function NewAccount() {
             password: data.password
         }
 
-        fetch('http://localhost:5000/auth/signup', {
+        const apiUrl = import.meta.env.VITE_API_URL;
+        fetch(`${apiUrl}/auth/signup`, {
             method: "POST",
             headers: {
                 'Content-Type': 'application/json'

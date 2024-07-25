@@ -19,8 +19,9 @@ export default function Post() {
             userName: user.user.userName
         }
 
+        const apiUrl = import.meta.env.VITE_API_URL;
         //creates new post in database
-        fetch("http://localhost:5000/feed/post", {
+        fetch(`${apiUrl}/feed/post`, {
             method: "POST",
             headers: {
                 'Content-Type': 'application/json'

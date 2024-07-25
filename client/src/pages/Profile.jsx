@@ -6,10 +6,11 @@ export default function ProfilePage() {
     const { user, isAuthenticated } = useAuth()
     const [posts, setPosts] = useState([])
 
+    const apiUrl = import.meta.env.VITE_API_URL
     useEffect(() => {
         if (isAuthenticated && user) {
             const userId = user.user._id
-            fetch(`http://localhost:5000/feed/profile/${userId}`)
+            fetch(`${apiUrl}/feed/profile/${userId}`)
                 .then(response => response.json())
                 .then(data => {
                     setPosts(data)

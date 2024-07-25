@@ -9,6 +9,7 @@ export default function RootLayout() {
   const { isAuthenticated, login } = useAuth()
   const navigate = useNavigate()
 
+  const apiUrl = import.meta.env.VITE_API_URL
   useEffect(() => {
     const userId = localStorage.getItem('userId')
     const token = localStorage.getItem('token')
@@ -20,7 +21,7 @@ export default function RootLayout() {
         localStorage.clear()
         navigate('/')
       } else {
-        fetch(`http://localhost:5000/auth/${userId}`, {
+        fetch(`${apiUrl}/auth/${userId}`, {
           headers: {
             'Authorization': 'Bearer ' + token,
             'Content-Type': 'application/json'

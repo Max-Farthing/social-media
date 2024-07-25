@@ -22,7 +22,8 @@ export default function Login() {
 
         let userName = data.userName
 
-        fetch('http://localhost:5000/auth/login', {
+        const apiUrl = import.meta.env.VITE_API_URL;
+        fetch(`${apiUrl}/auth/login`, {
             method: "POST",
             headers: {
                 'Content-Type': 'application/json'
