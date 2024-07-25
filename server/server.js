@@ -23,12 +23,13 @@ app.use('/feed', feedRoutes) //routes to feed API
 app.use('/auth', authRoutes) //routes to auth API
 
 const databaseConnection = process.env.DATABASE_URL //database 
+const PORT = process.env.port || 5000
 
 mongoose
     .connect(
         databaseConnection
     )
     .then(result => {
-        app.listen(5000, () => console.log("Server started on port 5000"))
+        app.listen(PORT, () => console.log("Server started on port 5000"))
     })
     .catch(err => console.log(err))
