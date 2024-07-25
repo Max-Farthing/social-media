@@ -1,0 +1,26 @@
+{
+    "projects": [
+      {
+        "src": "client/package.json",
+        "builds": [
+          { "src": "client/package.json", "use": "@vercel/static-build", "config": { "distDir": "client/dist" } }
+        ],
+        "routes": [
+          { "src": "/(.*)", "dest": "/client/$1" }
+        ]
+      },
+      {
+        "src": "server/package.json",
+        "builds": [
+          { "src": "server/package.json", "use": "@vercel/node" }
+        ],
+        "routes": [
+          { "src": "/feed/(.*)", "dest": "/server/feed/$1" },
+          { "src": "/auth/(.*)", "dest": "/server/auth/$1" }
+        ]
+      }
+    ]
+  }
+  
+  
+  
