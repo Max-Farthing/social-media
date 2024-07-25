@@ -23,7 +23,7 @@ app.use('/feed', feedRoutes) //routes to feed API
 app.use('/auth', authRoutes) //routes to auth API
 
 const databaseConnection = process.env.DATABASE_URL //database 
-const PORT = process.env.port || 5000
+const PORT = process.env.PORT || 5000
 
 mongoose
     .connect(
