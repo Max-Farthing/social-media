@@ -45,7 +45,6 @@ export default function Login() {
                 token: data.token,
                 userId: data.userId
             }
-            console.log(user)
             login(user)
         })
         .catch(err => console.log(err))

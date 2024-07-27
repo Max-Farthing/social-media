@@ -16,7 +16,7 @@ export default function Post() {
             title,
             description,
             userId,
-            userName: user.user.userName
+            userName: user?.user?.userName
         }
 
         const apiUrl = import.meta.env.VITE_API_URL;
@@ -32,14 +32,13 @@ export default function Post() {
                 return response.json()
             })
             .then(data => {
-                console.log(data)
-                console.log(user)
+
             })
             .catch(err => console.log(err))
 
         setTitle('')
         setDescription('')
-        navigate('/')
+        navigate('/', { state: { refresh: true } })
     }
 
     return (

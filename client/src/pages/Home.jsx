@@ -10,9 +10,11 @@ export default function HomePage() {
   const [selectedPost, setSelectedPost] = useState({})
   const [showModal, setShowModal] = useState(false)
   const [likedPosts, setLikedPosts] = useState(new Set())
+  const [shouldRefresh, setShouldRefresh] = useState(false);
   const { user } = useAuth()
 
-  const apiUrl = import.meta.env.VITE_API_URL;
+  const apiUrl = import.meta.env.VITE_API_URL
+
   //loads the initial state
   useEffect(() => {
     fetch(`${apiUrl}/feed/post`)
@@ -21,10 +23,17 @@ export default function HomePage() {
         setPosts(data)
       })
       .catch(err => console.log(err))
-  }, [showModal])
+  }, [showModal, shouldRefresh])
+
+  useEffect(() => {
+    if (navigate.state?.refresh) {
+      setShouldRefresh(true) // Set refresh trigger
+    }
+  }, [navigate.state])
 
   function handleClickNewPost() {
-    navigate('/post')
+    setShowModal(false)
+    navigate('/post', { state: { refresh: true } })
   }
 
   function handleClickPost(post) {
