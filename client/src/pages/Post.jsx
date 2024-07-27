@@ -32,13 +32,12 @@ export default function Post() {
                 return response.json()
             })
             .then(data => {
-
             })
             .catch(err => console.log(err))
 
         setTitle('')
         setDescription('')
-        navigate('/', { state: { refresh: true } })
+        navigate('/')
     }
 
     return (
