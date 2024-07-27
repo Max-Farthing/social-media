@@ -30,6 +30,6 @@ mongoose
         databaseConnection
     )
     .then(result => {
-        app.listen(PORT, () => console.log("Server started"))
+        app.listen(PORT, () => console.log(`Server started on port ${PORT}`))
     })
     .catch(err => console.log(err))
