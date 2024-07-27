@@ -19,6 +19,10 @@ app.use((req, res, next) => { //setting permissions
     next()
 })
 
+app.get('/', (req, res) => {
+    res.send('Welcome to the API!');
+})
+
 app.use('/feed', feedRoutes) //routes to feed API
 app.use('/auth', authRoutes) //routes to auth API
 
