@@ -1,11 +1,12 @@
 import React, { useEffect, useState } from 'react'
-import { useNavigate } from 'react-router-dom'
+import { useNavigate, useLocation } from 'react-router-dom'
 import Modal from '../components/Modal'
 import { useAuth } from '../store/AuthContext'
 
 export default function HomePage() {
   const token = localStorage.getItem('token')
   const navigate = useNavigate()
+  const location = useLocation()
   const [posts, setPosts] = useState([{}])
   const [selectedPost, setSelectedPost] = useState({})
   const [showModal, setShowModal] = useState(false)
@@ -19,9 +20,10 @@ export default function HomePage() {
       .then(res => res.json())
       .then(data => {
         setPosts(data)
+        console.log('refreshing data')
       })
       .catch(err => console.log(err))
-  }, [showModal])
+  }, [showModal, location])
 
   function handleClickNewPost() {
     navigate('/post')
